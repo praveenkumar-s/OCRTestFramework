@@ -1,6 +1,8 @@
 
+import re
 from pytesseract import pytesseract as pt
 from PIL import Image
+import aut
 
 
 """
@@ -9,8 +11,15 @@ findElement -> Returns the co-ordinates of the given text and instances
 findElements -> Returns list of occurences of a given string
 """
 class ImageProcessing():
-    def __init__(self,imagePath=None) -> None:
-        pass
+    def __init__(self,windowName=None,imagePath=None) -> None:
+        self.appUnderTest=None
+        if(windowName is not None):
+            self.appUnderTest = aut.AUT(windowName)
+            self.imagePath = self.appUnderTest.imagePath
+        elif(imagePath is not None):
+            self.imagePath = imagePath
+        else:
+            raise Exception("Either AUT or imagePath is mandatory ")
     
     def _getBoxes(self):
         return pt.image_to_boxes(Image.open(self.imagePath), output_type=pt.Output.DICT)
@@ -47,5 +56,20 @@ class ImageProcessing():
             yDelta=s1[1]-e1[1]
             xMid=int(xDelta/2)
             yMid=int(yDelta/2)
-
             return s1[0]+xMid , s1[1]-yMid
+
+    def findElement(self,name,instance,offset=None):
+        if(self.appUnderTest is not None):
+            self.appUnderTest = aut.AUT(self.appUnderTest.windowName)
+            self.imagePath = self.appUnderTest.imagePath
+        bx = self._getBoxes(self.imagePath)
+        X,Y=self._getCoOrdinates(bx,name,instance)
+        o=self._getCenterCoOrdinates(self.imagePath , X , Y )
+        if(self.appUnderTest is not None):
+            boundingRect = self.appUnderTest.boundingRectangle
+            adjusted = (o[0]+boundingRect[0], o[1]+boundingRect[1])
+            o=adjusted
+        if(offset is not None):
+            adju2 = (o[0]+offset[0], o[1],offset[1])
+            o=adju2
+        return o 
