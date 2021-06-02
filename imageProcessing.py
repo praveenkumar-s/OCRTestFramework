@@ -4,7 +4,7 @@ from pytesseract import pytesseract as pt
 from PIL import Image
 import aut
 
-
+pt.tesseract_cmd = "C:\\program files\\Tesseract-OCR\\tesseract.exe"
 """
 Init -> (optional) Image 
 findElement -> Returns the co-ordinates of the given text and instances
@@ -62,9 +62,9 @@ class ImageProcessing():
         if(self.appUnderTest is not None):
             self.appUnderTest = aut.AUT(self.appUnderTest.windowName)
             self.imagePath = self.appUnderTest.imagePath
-        bx = self._getBoxes(self.imagePath)
+        bx = self._getBoxes()
         X,Y=self._getCoOrdinates(bx,name,instance)
-        o=self._getCenterCoOrdinates(self.imagePath , X , Y )
+        o=self._getCenterCoOrdinates( X , Y )
         if(self.appUnderTest is not None):
             boundingRect = self.appUnderTest.boundingRectangle
             adjusted = (o[0]+boundingRect[0], o[1]+boundingRect[1])
