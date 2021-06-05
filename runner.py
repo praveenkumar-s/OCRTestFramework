@@ -23,6 +23,9 @@ def click(application, element, instance ):
     coOrdinates = IP.findElement(element , instance=instance)
     pyautogui.click(coOrdinates[0],coOrdinates[1])
 
+def close_application(application):
+    IP = imageProcessing.ImageProcessing(windowName=application)
+    coOrdinates = IP.closeApplication()
 
 def closeApplication():
     pass
@@ -32,5 +35,7 @@ for items in instructionSet:
         double_click(items.applicationName , items.elementName , items.instance)
     elif(items.actionName == 'click' ):
         click(items.applicationName , items.elementName , items.instance)
+    elif(items.actionName == 'close_application'):
+        close_application(items.applicationName)
 
     time.sleep(input_file.config.stepInterval)
