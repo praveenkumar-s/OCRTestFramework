@@ -1,0 +1,41 @@
+☐ Instruction set
+    ☐ @critical Externalize Instruction set 
+    ☐ @critical New Config - Continue on Error 
+    ☐ @low New Config - Log Level
+    ☐ @critical Do not Execute Step
+    ☐ @high  Step level - Supress Exception (Optional)
+    ☐ @low  Wait after execution of a step ( Optional - Step Level  )
+
+
+☐ Object detection
+    ☐ @low  Alternate Detection Ways : Score based detection
+    ☐ @low  Image based assited identification
+    ☐ @critical  Find Elements - return how many elements are available 
+    ☐ @critical  Regex Detection
+
+☐ Actions
+    ☐ @critical  Anchored Controls: given a normal control , anchor to L/R/T/B using offset
+    ☐ @critical  Send Keys Implementation
+    ☐ @critical  Assertions Text Exists ( instance optional )
+    ☐ @high  Get Value of Field - find way
+    ☐ @critical  Assert Not Exists
+
+
+☐ Logging
+    ☐ @low  Log Rotation
+    ☐ @high  KTATF Compatible Logs
+    ☐ @high  write log messages on exceptions
+    ☐ @low  Remote Logging / Central Logging
+
+
+☐ Reporting
+    ☐ @critical  KTATF Compatible Reports
+    ☐ @high  Extend Reports
+
+☐ Full code Exception analysis
+    ☐ @critical  store captured images in correct areas
+    ☐ @critical  clean up after run
+    ☐ @critical  create directories that are mandatory
+    
+☐ Inspect Tool
+    ☐ @high  create a snapshot tool to show boxes and string representation of the available page

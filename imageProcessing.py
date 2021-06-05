@@ -84,7 +84,7 @@ class ImageProcessing():
             adju2 = (o[0]+offset[0], o[1],offset[1])
             o=adju2
         return o 
+        
     def closeApplication(self):
         autBoundaries= self.appUnderTest.boundingRectangle
-        pyautogui.doubleClick(autBoundaries[0],autBoundaries[1])
-        
+        pyautogui.doubleClick(autBoundaries[0]+2,autBoundaries[1]+2)
