@@ -2,6 +2,7 @@ import json
 from collections import namedtuple
 import imageProcessing
 import pyautogui
+import time
 
 def customJsonDecoder(dictVar):
     return namedtuple('X', dictVar.keys())(*dictVar.values())
@@ -32,4 +33,4 @@ for items in instructionSet:
     elif(items.actionName == 'click' ):
         click(items.applicationName , items.elementName , items.instance)
 
-    time.sleep(config.stepInterval)
+    time.sleep(input_file.config.stepInterval)
