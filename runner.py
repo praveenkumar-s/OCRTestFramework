@@ -31,3 +31,5 @@ for items in instructionSet:
         double_click(items.applicationName , items.elementName , items.instance)
     elif(items.actionName == 'click' ):
         click(items.applicationName , items.elementName , items.instance)
+
+    time.sleep(config.stepInterval)
