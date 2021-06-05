@@ -1,0 +1,28 @@
+{
+    "config":{
+
+    },
+    "instructions": [
+        {
+            "applicationName": "Cougar Diagnostics",
+            "elementName": "MachineLayers",
+            "instance":1,
+            "actionName": "double_click",
+            "args":[]
+        },
+        {
+            "applicationName": "Cougar Diagnostics",
+            "elementName": "Facade",
+            "instance":1,
+            "actionName": "double_click",
+            "args":[]
+        },
+        {
+            "applicationName": "Cougar Diagnostics",
+            "elementName": "ClearStatus",
+            "instance":1,
+            "actionName": "click",
+            "args":[]
+        }
+    ]
+}
