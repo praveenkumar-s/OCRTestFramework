@@ -3,6 +3,10 @@ import re
 from pytesseract import pytesseract as pt
 from PIL import Image
 import aut
+import logging
+logging.basicConfig(filename='ImageProcessing.log', 
+level=logging.DEBUG, 
+format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
 
 pt.tesseract_cmd = "C:\\program files\\Tesseract-OCR\\tesseract.exe"
 """
@@ -11,8 +15,9 @@ findElement -> Returns the co-ordinates of the given text and instances
 findElements -> Returns list of occurences of a given string
 """
 class ImageProcessing():
-    def __init__(self,windowName=None,imagePath=None) -> None:
+    def __init__(self,windowName=None,imagePath=None,isDebug=True) -> None:
         self.appUnderTest=None
+        self.isDebug = isDebug
         if(windowName is not None):
             self.appUnderTest = aut.AUT(windowName)
             self.imagePath = self.appUnderTest.imagePath
@@ -20,7 +25,11 @@ class ImageProcessing():
             self.imagePath = imagePath
         else:
             raise Exception("Either AUT or imagePath is mandatory ")
-    
+    def _debugInformation(self):
+        if(self.isDebug):
+            detectionData = pt.image_to_string(Image.open(self.imagePath))
+            logging.debug(detectionData)
+
     def _getBoxes(self):
         return pt.image_to_boxes(Image.open(self.imagePath), output_type=pt.Output.DICT)
     
@@ -62,6 +71,7 @@ class ImageProcessing():
         if(self.appUnderTest is not None):
             self.appUnderTest = aut.AUT(self.appUnderTest.windowName)
             self.imagePath = self.appUnderTest.imagePath
+        self._debugInformation()
         bx = self._getBoxes()
         X,Y=self._getCoOrdinates(bx,name,instance)
         o=self._getCenterCoOrdinates( X , Y )
