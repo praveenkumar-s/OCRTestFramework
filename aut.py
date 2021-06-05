@@ -46,10 +46,10 @@ class AUT():
         img = ImageGrab.grab(bbox)
         self._cleanupImages('aut_img_'+str(hwnd)+'.png')
         self._cleanupImages('aut_img_'+str(hwnd)+'PROCESSED.png')
-        
+        img.save('aut_img_'+str(hwnd)+'.png')
         preprocessImage('aut_img_'+str(hwnd)+'.png',
                         'aut_img_'+str(hwnd)+'_PROCESSED')
-        self.imagePath = 'aut_img_'+str(hwnd)+'PROCESSED.png'
+        self.imagePath = 'aut_img_'+str(hwnd)+'_PROCESSED.png'
 
     def _cleanupImages(self, imagePath):
         if(os.path.exists(imagePath)):
