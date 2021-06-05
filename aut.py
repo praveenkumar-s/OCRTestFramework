@@ -3,6 +3,7 @@ import cv2
 import os
 from PIL import ImageGrab, Image
 import win32gui
+import os
 
 
 """
@@ -42,6 +43,10 @@ class AUT():
         bbox = win32gui.GetWindowRect(hwnd)
         self.boundingRectangle = bbox
         img = ImageGrab.grab(bbox)
+        if(os.path.exists('aut_img_'+str(hwnd)+'.png')):
+            os.remove('aut_img_'+str(hwnd)+'.png')
+        if(os.path.exists('aut_img_'+str(hwnd)+'PROCESSED.png')):
+            os.remove('aut_img_'+str(hwnd)+'PROCESSED.png')
         img.save('aut_img_'+str(hwnd)+'.png')
         preprocessImage('aut_img_'+str(hwnd)+'.png',
                         'aut_img_'+str(hwnd)+'_PROCESSED')
