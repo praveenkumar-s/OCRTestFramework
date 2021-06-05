@@ -1,10 +1,11 @@
 
+import shutil
 import cv2
 import os
 from PIL import ImageGrab, Image
 import win32gui
 import os
-
+from shutil import copyfile
 
 """
 Window Name
@@ -43,14 +44,18 @@ class AUT():
         bbox = win32gui.GetWindowRect(hwnd)
         self.boundingRectangle = bbox
         img = ImageGrab.grab(bbox)
-        if(os.path.exists('aut_img_'+str(hwnd)+'.png')):
-            os.remove('aut_img_'+str(hwnd)+'.png')
-        if(os.path.exists('aut_img_'+str(hwnd)+'PROCESSED.png')):
-            os.remove('aut_img_'+str(hwnd)+'PROCESSED.png')
-        img.save('aut_img_'+str(hwnd)+'.png')
+        self._cleanupImages('aut_img_'+str(hwnd)+'.png')
+        self._cleanupImages('aut_img_'+str(hwnd)+'PROCESSED.png')
+        
         preprocessImage('aut_img_'+str(hwnd)+'.png',
                         'aut_img_'+str(hwnd)+'_PROCESSED')
         self.imagePath = 'aut_img_'+str(hwnd)+'PROCESSED.png'
+
+    def _cleanupImages(self, imagePath):
+        if(os.path.exists(imagePath)):
+            shutil.copyfile(imagePath , 'RuntimeInformation/'+imagePath)
+            os.remove(imagePath)
+
 
     def _getBoundingRectangleofProcess(self):
         pass
