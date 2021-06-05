@@ -1,10 +1,14 @@
 import aut
 import imageProcessing
-
+import pyautogui
 
 
 application = 'Cougar Diagnostics'
 
 IP = imageProcessing.ImageProcessing(windowName=application)
 co= IP.findElement('Machine Layers')
-print(co)
+
+
+pyautogui.click(co[0],co[1])
+
+
