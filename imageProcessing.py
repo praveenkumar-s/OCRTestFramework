@@ -87,4 +87,4 @@ class ImageProcessing():
         
     def closeApplication(self):
         autBoundaries= self.appUnderTest.boundingRectangle
-        pyautogui.doubleClick(autBoundaries[0]+2,autBoundaries[1]+2)
+        pyautogui.doubleClick(autBoundaries[0]+2,autBoundaries[1]+2, interval=1)
