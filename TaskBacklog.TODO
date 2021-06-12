@@ -2,7 +2,7 @@
     ☐ @critical Externalize Instruction set 
     ☐ @critical New Config - Continue on Error 
     ☐ @low New Config - Log Level
-    ☐ @critical Do not Execute Step
+    ✔ @critical Do not Execute Step @done (6/12/2021, 9:33:05 PM)
     ☐ @high  Step level - Supress Exception (Optional)
     ☐ @low  Wait after execution of a step ( Optional - Step Level  )
 

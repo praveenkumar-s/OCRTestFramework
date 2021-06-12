@@ -7,56 +7,64 @@
             "elementName": "Tools",
             "instance": 1,
             "actionName": "click",
-            "args": []
+            "args": [],
+            "enabled":true
         },
         {
             "applicationName": "Wafer Inspection System",
-            "elementName": "DiagnosticsGLI",
+            "elementName": "Dia........G..",
             "instance": 1,
             "actionName": "click",
-            "args": []
+            "args": ["Regx"],
+            "enabled":true
         },
         {
             "applicationName": "Cougar Diagnostics",
             "elementName": "MachineLayers",
             "instance": 1,
             "actionName": "double_click",
-            "args": []
+            "args": [],
+            "enabled":true
         },
         {
             "applicationName": "Cougar Diagnostics",
             "elementName": "Facade",
             "instance": 1,
             "actionName": "double_click",
-            "args": []
+            "args": [],
+            "enabled":true
         },
         {
             "applicationName": "Cougar Diagnostics",
             "elementName": "ClearStatus",
             "instance": 1,
             "actionName": "click",
-            "args": []
+            "args": [],
+            "enabled":true
         },
         {
             "applicationName": "Cougar Diagnostics",
             "elementName": "DiagnosticTests",
             "instance": 1,
             "actionName": "double_click",
-            "args": []
+            "args": [],
+            "enabled":true
         },
         {
             "applicationName": "Cougar Diagnostics",
             "elementName": "contouretic",
             "instance": 1,
             "actionName": "click",
-            "args": []
+            "args": [],
+            "enabled":true
         },
         {
             "applicationName": "Cougar Diagnostics",
             "elementName": null,
             "instance": 1,
             "actionName": "close_application",
-            "args": []
+            "args": [],
+            "enabled":true
         }
     ]
 }
