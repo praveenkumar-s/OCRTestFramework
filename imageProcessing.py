@@ -5,6 +5,8 @@ from PIL import Image
 import aut
 import logging
 import pyautogui
+import re
+
 logging.basicConfig(filename='ImageProcessing.log', 
 level=logging.DEBUG, 
 format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
@@ -56,6 +58,17 @@ class ImageProcessing():
 
         return start,end 
     
+    def _getCoOrdinatesRegx(self , boxes , object_nameRegx , instance):
+        overall_string= ''.join(boxes['char'])
+        overall_string.replace(' ','')
+        rx = re.compile(object_nameRegx)
+        result = rx.findall(overall_string)
+        if(result==[]):
+            raise Exception("Object Not Detected") 
+        else:
+            return self._getCoOrdinates(boxes , result[instance+1], 1)
+
+
     def _getCenterCoOrdinates(self,start,end):
             image = Image.open(self.imagePath)
             width, height = image.size
@@ -68,13 +81,16 @@ class ImageProcessing():
             yMid=int(yDelta/2)
             return s1[0]+xMid , s1[1]-yMid
 
-    def findElement(self,name,instance,offset=None):
+    def findElement(self,name,instance,offset=None,isRegex = False):
         if(self.appUnderTest is not None):
             self.appUnderTest = aut.AUT(self.appUnderTest.windowName)
             self.imagePath = self.appUnderTest.imagePath
         self._debugInformation()
         bx = self._getBoxes()
-        X,Y=self._getCoOrdinates(bx,name,instance)
+        if(isRegex):
+            X,Y=self._getCoOrdinatesRegx(bx,name,instance)
+        else:
+            X,Y=self._getCoOrdinates(bx,name,instance)
         o=self._getCenterCoOrdinates( X , Y )
         if(self.appUnderTest is not None):
             boundingRect = self.appUnderTest.boundingRectangle
@@ -85,6 +101,9 @@ class ImageProcessing():
             o=adju2
         return o 
         
+    def findElementWithFallback(self, primary_name , primary_instance, seconday_name , secondary_insance , offset = None, isPrimaryRegx = False, isSecondaryRegx=False):
+        pass
+
     def closeApplication(self):
         autBoundaries= self.appUnderTest.boundingRectangle
         pyautogui.doubleClick(autBoundaries[0]+2,autBoundaries[1]+2, interval=1)

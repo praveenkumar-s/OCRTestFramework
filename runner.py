@@ -26,16 +26,24 @@ def click(application, element, instance ):
 def close_application(application):
     IP = imageProcessing.ImageProcessing(windowName=application)
     coOrdinates = IP.closeApplication()
+    pyautogui.click(coOrdinates[0], coOrdinates[1])
+    pyautogui.click(coOrdinates[0], coOrdinates[1])
 
 def closeApplication():
     pass
 
 for items in instructionSet:
+    isRegx = "Regx" in items.args
+    IP = imageProcessing.ImageProcessing(windowName=items.applicationName)
+    coOrdinates = IP.findElement(items.elementName , items.instance , isRegex=isRegx)
+    
     if(items.actionName == 'double_click'):
-        double_click(items.applicationName , items.elementName , items.instance)
+        pyautogui.doubleClick(coOrdinates[0],coOrdinates[1])
     elif(items.actionName == 'click' ):
-        click(items.applicationName , items.elementName , items.instance)
+        pyautogui.click(coOrdinates[0],coOrdinates[1])
     elif(items.actionName == 'close_application'):
-        close_application(items.applicationName)
+        pyautogui.click(coOrdinates[0], coOrdinates[1])
+        time.sleep(0.3)
+        pyautogui.click(coOrdinates[0], coOrdinates[1])
 
     time.sleep(input_file.config.stepInterval)
