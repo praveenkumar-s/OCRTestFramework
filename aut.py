@@ -39,6 +39,7 @@ class AUT():
         print(firefox)
         firefox = firefox[0]
         hwnd = firefox
+        self.hwnd_id = hwnd
         win32gui.SetForegroundWindow(hwnd)
         # TODO Bounding Rectangle can be found here !
         bbox = win32gui.GetWindowRect(hwnd)
@@ -55,6 +56,14 @@ class AUT():
         if(os.path.exists(imagePath)):
             shutil.copyfile(imagePath , 'RuntimeInformation/'+imagePath)
             os.remove(imagePath)
+
+    def _cleanupAllImages(self):
+        primaryImage='aut_img_'+str(self.hwnd_id)+'.png'
+        secondaryImage=self.imagePath
+        if(os.path.exists(primaryImage)):
+            os.remove(primaryImage)
+        if(os.path.exists(secondaryImage)):
+            os.remove(secondaryImage)
 
 
     def _getBoundingRectangleofProcess(self):

@@ -6,6 +6,7 @@ import aut
 import logging
 import pyautogui
 import re
+from uuid import  uuid3
 
 logging.basicConfig(filename='ImageProcessing.log', 
 level=logging.DEBUG, 
@@ -31,7 +32,11 @@ class ImageProcessing():
     def _debugInformation(self):
         if(self.isDebug):
             detectionData = pt.image_to_string(Image.open(self.imagePath))
-            logging.debug(detectionData)
+            id = str(uuid3)
+            logging.info("page Information: "+id+'.txt')
+            fp = open('/RuntimeInformation/'+id+'.txt','w+')
+            fp.write(detectionData)
+            fp.close()
 
     def _getBoxes(self):
         return pt.image_to_boxes(Image.open(self.imagePath), output_type=pt.Output.DICT)
@@ -108,3 +113,6 @@ class ImageProcessing():
     def closeApplication(self):
         autBoundaries= self.appUnderTest.boundingRectangle
         pyautogui.doubleClick(autBoundaries[0]+2,autBoundaries[1]+2, interval=1)
+
+    def __del__(self):
+            self.appUnderTest._cleanupAllImages()
