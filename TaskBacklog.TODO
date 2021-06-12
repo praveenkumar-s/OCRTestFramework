@@ -11,7 +11,7 @@
     ☐ @low  Alternate Detection Ways : Score based detection
     ☐ @low  Image based assited identification
     ☐ @critical  Find Elements - return how many elements are available 
-    ☐ @critical  Regex Detection
+    ✔ @critical  Regex Detection @done (6/12/2021, 9:28:05 PM)
 
 ☐ Actions
     ☐ @critical  Anchored Controls: given a normal control , anchor to L/R/T/B using offset
