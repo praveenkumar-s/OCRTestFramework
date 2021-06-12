@@ -16,9 +16,9 @@
 ☐ Actions
     ☐ @critical  Anchored Controls: given a normal control , anchor to L/R/T/B using offset
     ☐ @critical  Send Keys Implementation
-    ☐ @critical  Assertions Text Exists ( instance optional )
+    ✔ @critical  Assertions Text Exists ( instance optional ) @done (6/12/2021, 9:45:46 PM)
     ☐ @high  Get Value of Field - find way
-    ☐ @critical  Assert Not Exists
+    ✔ @critical  Assert Not Exists @done (6/12/2021, 9:45:43 PM)
 
 
 ☐ Logging
