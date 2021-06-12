@@ -33,7 +33,7 @@ def closeApplication():
     pass
 
 for items in instructionSet:
-    if(items.enabled):
+    if(not items.enabled):
         continue
     print("Running item : "+ str(items))
     isRegx = "Regx" in items.args

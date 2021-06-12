@@ -1,12 +1,14 @@
 
 import re
+import uuid
 from pytesseract import pytesseract as pt
 from PIL import Image
 import aut
 import logging
 import pyautogui
 import re
-from uuid import  uuid3
+import uuid
+import os
 
 logging.basicConfig(filename='ImageProcessing.log', 
 level=logging.DEBUG, 
@@ -32,9 +34,9 @@ class ImageProcessing():
     def _debugInformation(self):
         if(self.isDebug):
             detectionData = pt.image_to_string(Image.open(self.imagePath))
-            id = str(uuid3)
+            id = str(uuid.uuid1())
             logging.info("page Information: "+id+'.txt')
-            fp = open('/RuntimeInformation/'+id+'.txt','w+')
+            fp = open(os.path.join('RuntimeInformation',id+'.txt'),'w+')
             fp.write(detectionData)
             fp.close()
 
@@ -87,7 +89,7 @@ class ImageProcessing():
             return s1[0]+xMid , s1[1]-yMid
 
     def findElement(self,name,instance,offset=None,isRegex = False):
-        logging.debug("Finding Object: {0} , instance: {1} , offset: {2} , isRegex: {3}".format(name , str(instance), str(offset), str(isRegex)))
+        logging.info("Finding Object: {0} , instance: {1} , offset: {2} , isRegex: {3}".format(name , str(instance), str(offset), str(isRegex)))
         if(self.appUnderTest is not None):
             self.appUnderTest = aut.AUT(self.appUnderTest.windowName)
             self.imagePath = self.appUnderTest.imagePath
