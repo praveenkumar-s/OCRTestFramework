@@ -33,10 +33,11 @@ def closeApplication():
     pass
 
 for items in instructionSet:
+    print("Running item : "+ str(items))
     isRegx = "Regx" in items.args
     IP = imageProcessing.ImageProcessing(windowName=items.applicationName)
     coOrdinates = IP.findElement(items.elementName , items.instance , isRegex=isRegx)
-    
+
     if(items.actionName == 'double_click'):
         pyautogui.doubleClick(coOrdinates[0],coOrdinates[1])
     elif(items.actionName == 'click' ):

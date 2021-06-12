@@ -66,7 +66,7 @@ class ImageProcessing():
         if(result==[]):
             raise Exception("Object Not Detected") 
         else:
-            return self._getCoOrdinates(boxes , result[instance+1], 1)
+            return self._getCoOrdinates(boxes , result[instance-1], 1)
 
 
     def _getCenterCoOrdinates(self,start,end):
@@ -82,6 +82,7 @@ class ImageProcessing():
             return s1[0]+xMid , s1[1]-yMid
 
     def findElement(self,name,instance,offset=None,isRegex = False):
+        logging.debug("Finding Object: {0} , instance: {1} , offset: {2} , isRegex: {3}".format(name , str(instance), str(offset), str(isRegex)))
         if(self.appUnderTest is not None):
             self.appUnderTest = aut.AUT(self.appUnderTest.windowName)
             self.imagePath = self.appUnderTest.imagePath
