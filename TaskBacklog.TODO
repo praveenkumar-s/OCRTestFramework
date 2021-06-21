@@ -1,5 +1,7 @@
 ☐ Instruction set
     ☐ @critical Externalize Instruction set 
+        By Default , instructionset is taken as json
+        We can also support csv , internally csv will be translated to json and passed on to execution engine
     ☐ @critical New Config - Continue on Error 
     ☐ @low New Config - Log Level
     ✔ @critical Do not Execute Step @done (6/12/2021, 9:33:05 PM)
