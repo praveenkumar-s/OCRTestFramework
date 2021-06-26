@@ -109,6 +109,29 @@ class ImageProcessing():
             o=adju2
         return o 
         
+    def scrollToFindElement(self, name , instance , offset = None , isRegex = False , scrollDirection = "up", scrollStep=10, limit = 100):
+        tryLimit=1
+        while True:
+            try:
+                element = self.findElement(name , instance , offset = offset , isRegex = isRegex)
+                return element
+            except:
+                if(tryLimit>limit):
+                    logging.error("Scroll limit exceeded and element {0} is not found ".format(name))
+                    raise Exception("Scroll limit exceeded and element {0} is not found ".format(name))
+                logging.info("element not found, scrolling step: "+str(scrollStep) +" in direction "+scrollDirection + " iteration: "+ str(tryLimit))
+                if(scrollDirection.lower() == 'up'):
+                    pyautogui.scroll(scrollStep)
+                elif(scrollDirection.lower()=='down'):
+                    pyautogui.scroll(scrollStep*-1)
+                elif(scrollDirection.lower()=='right'):
+                    pyautogui.hscroll(-1*scrollStep)
+                else:
+                    pyautogui.pyautogui.hscroll(scrollStep)
+            tryLimit = tryLimit+1
+                
+        
+
     def findElementWithFallback(self, primary_name , primary_instance, seconday_name , secondary_insance , offset = None, isPrimaryRegx = False, isSecondaryRegx=False):
         pass
 
