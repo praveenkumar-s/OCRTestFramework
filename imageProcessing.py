@@ -27,6 +27,7 @@ class ImageProcessing():
         if(windowName is not None):
             self.appUnderTest = aut.AUT(windowName)
             self.imagePath = self.appUnderTest.imagePath
+            logging.debug("Image Path is set to : "+self.imagePath)
         elif(imagePath is not None):
             self.imagePath = imagePath
         else:
